@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>하리와의 대화</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* 하리 브랜드 컬러 */
+  --hari-pink: #ff7b8a;
+  --hari-mint: #06d6a0;
+  --hari-pink-light: #ffb3be;
+  --hari-mint-light: #8ef5d7;
+  --hari-coral: #ff9aa2;
+  --hari-sky: #c7ceea;
+  
+  /* 배경 */
+  --bg-main: #fef9fa;
+  --bg-gradient: linear-gradient(135deg, #fff5f7 0%, #f0f9ff 100%);
+  --bg-pattern: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(255, 123, 138, 0.02) 20px,
+    rgba(255, 123, 138, 0.02) 40px
+  );
+  
+  /* 말풍선 */
+  --bubble-hari: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
+  --bubble-me: linear-gradient(135deg, var(--hari-pink) 0%, var(--hari-coral) 100%);
+  --bubble-shadow: 0 2px 8px rgba(255, 123, 138, 0.15);
+  
+  /* 텍스트 */
+  --text-main: #2a2420;
+  --text-dim: #9e9490;
+  --text-time: #c5b8b5;
+  
+  /* 헤더 */
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --border: rgba(255, 123, 138, 0.1);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'DM Sans', 'Noto Sans KR', -apple-system, sans-serif;
+  background: var(--bg-main);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ═══════════════════════════════════════
+   HEADER (하리 스타일)
+   ═══════════════════════════════════════ */
+.header {
+  background: var(--header-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(255, 123, 138, 0.08);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--text-main);
+  font-size: 24px;
+  font-weight: 300;
+  transition: transform 0.2s;
+}
+
+.back-btn:hover {
+  transform: translateX(-4px);
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--hari-pink), var(--hari-mint));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(255, 123, 138, 0.3);
+  position: relative;
+}
+
+.profile-img::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background: var(--hari-mint);
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(6, 214, 160, 0.2);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.profile-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--hari-mint);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--hari-mint);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.8); }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-btn {
+  background: none;
+  border: 0.5px solid var(--border);
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--text-dim);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header-btn:hover {
+  border-color: var(--hari-pink);
+  color: var(--hari-pink);
+  background: rgba(255, 123, 138, 0.05);
+}
+
+/* ═══════════════════════════════════════
+   SEARCH MODAL
+   ═══════════════════════════════════════ */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(42, 36, 32, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.search-modal.show {
+  display: flex;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.search-container {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(255, 123, 138, 0.3);
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-header {
+  padding: 20px 24px;
+  border-bottom: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-main);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: var(--hari-pink);
+  background: white;
+}
+
+.search-icon {
+  color: var(--text-dim);
+  font-size: 18px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  background: transparent;
+  color: var(--text-main);
+}
+
+.search-input::placeholder {
+  color: var(--text-dim);
+}
+
+.search-close {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.search-close:hover {
+  color: var(--text-main);
+}
+
+.search-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 16px 24px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.search-tab {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.search-tab.active {
+  color: var(--hari-pink);
+  border-bottom-color: var(--hari-pink);
+}
+
+.search-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+}
+
+.search-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: var(--hari-pink);
+  border-radius: 3px;
+}
+
+.search-result-item {
+  padding: 16px;
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.search-result-item:hover {
+  border-color: var(--hari-pink);
+  background: rgba(255, 123, 138, 0.03);
+  transform: translateX(4px);
+}
+
+.search-result-date {
+  font-size: 11px;
+  color: var(--text-time);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.search-result-preview {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.search-result-preview mark {
+  background: rgba(255, 123, 138, 0.2);
+  color: var(--hari-pink);
+  font-weight: 500;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.search-result-sender {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.search-no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-dim);
+}
+
+.search-no-results-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+.search-no-results-text {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* 날짜 필터 */
+.date-filter {
+  padding: 16px 24px;
+  border-bottom: 0.5px solid var(--border);
+  display: none;
+}
+
+.date-filter.show {
+  display: block;
+}
+
+.date-filter-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.date-filter-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-width: 60px;
+}
+
+.date-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-main);
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: var(--hari-pink);
+}
+
+.date-filter-btn {
+  padding: 8px 16px;
+  background: var(--hari-pink);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.date-filter-btn:hover {
+  background: var(--hari-coral);
+  transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════════
+   CHAT MESSAGES AREA
+   ═══════════════════════════════════════ */
+.chat-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  position: relative;
+}
+
+.chat-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-pattern);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chat-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background: var(--hari-pink);
+  border-radius: 4px;
+  opacity: 0.5;
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+  background: var(--hari-coral);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* 날짜 구분선 */
+.date-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
+  gap: 16px;
+}
+
+.date-divider::before,
+.date-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+.date-divider-text {
+  background: white;
+  color: var(--text-dim);
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  border: 0.5px solid var(--border);
+  box-shadow: 0 2px 8px rgba(255, 123, 138, 0.08);
+}
+
+/* 메시지 그룹 */
+.message-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  align-items: flex-end;
+}
+
+.message-group.me {
+  flex-direction: row-reverse;
+}
+
+/* 프로필 이미지 */
+.msg-profile {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--hari-pink), var(--hari-mint));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(255, 123, 138, 0.25);
+  letter-spacing: 0.05em;
+}
+
+.message-group.me .msg-profile {
+  display: none;
+}
+
+/* 메시지 컨텐츠 */
+.msg-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 65%;
+}
+
+.message-group.me .msg-content {
+  align-items: flex-end;
+}
+
+/* 이름 */
+.msg-name {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-weight: 500;
+  padding: 0 4px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+.message-group.me .msg-name {
+  display: none;
+}
+
+/* 말풍선 + 시간 + 읽음 */
+.msg-bubble-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.message-group.me .msg-bubble-row {
+  flex-direction: row-reverse;
+}
+
+/* 말풍선 (하리 스타일 - 부드러운 꼬리) */
+.msg-bubble {
+  background: var(--bubble-hari);
+  padding: 12px 18px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-main);
+  position: relative;
+  box-shadow: var(--bubble-shadow);
+  word-wrap: break-word;
+  border: 0.5px solid rgba(255, 123, 138, 0.1);
+}
+
+/* 하리 말풍선 - 왼쪽 아래 둥근 꼬리 */
+.message-group.other .msg-bubble {
+  border-bottom-left-radius: 4px;
+}
+
+.message-group.other .msg-bubble::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 0 0 20px 0;
+  box-shadow: 0 2px 8px rgba(255, 123, 138, 0.1);
+}
+
+.message-group.other .msg-bubble::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--bg-main);
+  border-radius: 0 20px 0 0;
+}
+
+/* 내 말풍선 - 핑크 그라데이션 + 오른쪽 아래 둥근 꼬리 */
+.message-group.me .msg-bubble {
+  background: var(--bubble-me);
+  color: white;
+  border: none;
+  border-bottom-right-radius: 4px;
+}
+
+.message-group.me .msg-bubble::before {
+  content: '';
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--hari-coral);
+  border-radius: 0 0 0 20px;
+  box-shadow: 0 2px 8px rgba(255, 123, 138, 0.15);
+}
+
+.message-group.me .msg-bubble::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--bg-main);
+  border-radius: 20px 0 0 0;
+}
+
+/* 시간 + 읽음 */
+.msg-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
+
+.message-group.me .msg-meta {
+  align-items: flex-start;
+}
+
+.msg-time {
+  font-size: 11px;
+  color: var(--text-time);
+  white-space: nowrap;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.03em;
+}
+
+.msg-read {
+  font-size: 10px;
+  color: var(--hari-pink);
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* 타이핑 인디케이터 */
+.typing-indicator {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.typing-bubble {
+  background: white;
+  padding: 14px 20px;
+  border-radius: 18px;
+  border-bottom-left-radius: 4px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  position: relative;
+  box-shadow: var(--bubble-shadow);
+  border: 0.5px solid rgba(255, 123, 138, 0.1);
+}
+
+.typing-bubble::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 0 0 20px 0;
+  box-shadow: 0 2px 8px rgba(255, 123, 138, 0.1);
+}
+
+.typing-bubble::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--bg-main);
+  border-radius: 0 20px 0 0;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hari-pink);
+  animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+/* ═══════════════════════════════════════
+   QUICK REPLIES (하리 스타일)
+   ═══════════════════════════════════════ */
+.quick-replies {
+  display: flex;
+  gap: 10px;
+  padding: 16px 24px;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-top: 0.5px solid var(--border);
+  flex-shrink: 0;
+}
+
+.quick-replies::-webkit-scrollbar {
+  height: 4px;
+}
+
+.quick-replies::-webkit-scrollbar-thumb {
+  background: var(--hari-pink);
+  border-radius: 2px;
+}
+
+.quick-reply-btn {
+  background: white;
+  border: 0.5px solid var(--border);
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--text-main);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(255, 123, 138, 0.08);
+  font-weight: 400;
+}
+
+.quick-reply-btn:hover {
+  background: var(--hari-pink);
+  color: white;
+  border-color: var(--hari-pink);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 123, 138, 0.25);
+}
+
+/* ═══════════════════════════════════════
+   INPUT AREA (하리 스타일)
+   ═══════════════════════════════════════ */
+.input-area {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-top: 0.5px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 -2px 12px rgba(255, 123, 138, 0.08);
+}
+
+.input-left {
+  display: flex;
+  gap: 8px;
+}
+
+.input-btn {
+  width: 40px;
+  height: 40px;
+  border: 0.5px solid var(--border);
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--text-dim);
+  transition: all 0.2s;
+  flex-shrink: 0;
+  border-radius: 12px;
+}
+
+.input-btn:hover {
+  border-color: var(--hari-pink);
+  color: var(--hari-pink);
+  background: rgba(255, 123, 138, 0.05);
+}
+
+.input-wrapper {
+  flex: 1;
+  background: white;
+  border: 0.5px solid var(--border);
+  border-radius: 24px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 20px;
+  max-height: 120px;
+  box-shadow: 0 2px 8px rgba(255, 123, 138, 0.08);
+  transition: all 0.2s;
+}
+
+.input-wrapper:focus-within {
+  border-color: var(--hari-pink);
+  box-shadow: 0 4px 16px rgba(255, 123, 138, 0.15);
+}
+
+.input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  resize: none;
+  min-height: 24px;
+  max-height: 100px;
+  line-height: 1.6;
+  overflow-y: auto;
+  color: var(--text-main);
+}
+
+.input-field::placeholder {
+  color: var(--text-dim);
+}
+
+.input-field::-webkit-scrollbar {
+  width: 4px;
+}
+
+.input-field::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.send-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: linear-gradient(135deg, var(--hari-pink), var(--hari-coral));
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(255, 123, 138, 0.3);
+}
+
+.send-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 123, 138, 0.4);
+}
+
+.send-btn:active {
+  transform: scale(0.95);
+}
+
+.send-btn:disabled {
+  background: var(--border);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ═══════════════════════════════════════
+   EMOJI PICKER
+   ═══════════════════════════════════════ */
+.emoji-picker {
+  position: absolute;
+  bottom: 80px;
+  left: 24px;
+  background: white;
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(255, 123, 138, 0.2);
+  display: none;
+  max-width: 340px;
+  z-index: 100;
+}
+
+.emoji-picker.show {
+  display: block;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.emoji-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.emoji-grid::-webkit-scrollbar-thumb {
+  background: var(--hari-pink);
+  border-radius: 3px;
+}
+
+.emoji-item {
+  font-size: 26px;
+  cursor: pointer;
+  padding: 6px;
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.emoji-item:hover {
+  background: rgba(255, 123, 138, 0.1);
+  transform: scale(1.2);
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .msg-content {
+    max-width: 80%;
+  }
+  
+  .header {
+    padding: 12px 16px;
+  }
+  
+  .chat-container {
+    padding: 16px;
+  }
+  
+  .input-area {
+    padding: 12px 16px;
+  }
+  
+  .quick-replies {
+    padding: 12px 16px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <button class="back-btn" onclick="goBack()">←</button>
+    <div class="header-profile">
+      <div class="profile-img">H</div>
+      <div class="profile-info">
+        <div class="profile-name">하리</div>
+        <div class="profile-status">
+          <span class="status-dot"></span>
+          <span>Online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-right">
+    <button class="header-btn" onclick="openSearch()">🔍 Search</button>
+    <button class="header-btn" onclick="alert('설정 기능은 준비 중이에요!')">☰ Menu</button>
+  </div>
+</div>
+
+<!-- SEARCH MODAL -->
+<div class="search-modal" id="searchModal" onclick="closeSearchOnOutside(event)">
+  <div class="search-container">
+    <!-- 검색 헤더 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          class="search-input" 
+          id="searchInput"
+          placeholder="메시지 검색..."
+          oninput="performSearch()"
+        >
+      </div>
+      <button class="search-close" onclick="closeSearch()">×</button>
+    </div>
+
+    <!-- 검색 탭 -->
+    <div class="search-tabs">
+      <button class="search-tab active" onclick="switchSearchTab('keyword')">키워드</button>
+      <button class="search-tab" onclick="switchSearchTab('date')">날짜</button>
+    </div>
+
+    <!-- 날짜 필터 -->
+    <div class="date-filter" id="dateFilter">
+      <div class="date-filter-row">
+        <span class="date-filter-label">From</span>
+        <input type="date" class="date-input" id="dateFrom">
+        <span class="date-filter-label">To</span>
+        <input type="date" class="date-input" id="dateTo">
+        <button class="date-filter-btn" onclick="searchByDate()">검색</button>
+      </div>
+    </div>
+
+    <!-- 검색 결과 -->
+    <div class="search-results" id="searchResults">
+      <div class="search-no-results">
+        <div class="search-no-results-icon">💬</div>
+        <div class="search-no-results-text">
+          검색어를 입력하거나<br>날짜를 선택해주세요
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK REPLIES -->
+<div class="quick-replies">
+  <button class="quick-reply-btn" onclick="sendQuick('안녕하세요!')">👋 안녕하세요!</button>
+  <button class="quick-reply-btn" onclick="sendQuick('오늘 뭐해?')">💭 오늘 뭐해?</button>
+  <button class="quick-reply-btn" onclick="sendQuick('요즘 어때?')">✨ 요즘 어때?</button>
+  <button class="quick-reply-btn" onclick="sendQuick('패션 추천해줘')">👗 패션 추천</button>
+  <button class="quick-reply-btn" onclick="sendQuick('음악 들려줘')">🎵 음악 추천</button>
+</div>
+
+<!-- CHAT MESSAGES -->
+<div class="chat-container" id="chatContainer">
+  <div class="messages" id="messages">
+    
+    <!-- 날짜 구분선 -->
+    <div class="date-divider">
+      <span class="date-divider-text">2026. 03. 25 TUE</span>
+    </div>
+
+    <!-- 하리 메시지 -->
+    <div class="message-group other">
+      <div class="msg-profile">H</div>
+      <div class="msg-content">
+        <div class="msg-name">Hari</div>
+        <div class="msg-bubble-row">
+          <div class="msg-bubble">안녕하세요! 저는 하리예요 ✨<br>만나서 정말 반가워요!</div>
+          <div class="msg-meta">
+            <span class="msg-time">PM 2:30</span>
+            <span class="msg-read">READ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 하리 메시지 2 -->
+    <div class="message-group other">
+      <div class="msg-profile">H</div>
+      <div class="msg-content">
+        <div class="msg-bubble-row">
+          <div class="msg-bubble">오늘은 무슨 이야기 하고 싶으세요? 패션, 음악, 일상... 뭐든 좋아요! 😊</div>
+          <div class="msg-meta">
+            <span class="msg-time">PM 2:30</span>
+            <span class="msg-read">READ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 내 메시지 -->
+    <div class="message-group me">
+      <div class="msg-content">
+        <div class="msg-bubble-row">
+          <div class="msg-meta">
+            <span class="msg-read">1</span>
+            <span class="msg-time">PM 2:31</span>
+          </div>
+          <div class="msg-bubble">안녕하세요! 만나서 반가워요 🙌</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EMOJI PICKER -->
+<div class="emoji-picker" id="emojiPicker">
+  <div class="emoji-grid">
+    😀😃😄😁😆😅🤣😂🙂🙃😉😊😇🥰😍🤩😘😗☺😚😙🥲😋😛😜🤪😝🤑🤗🤭🤫🤔🤐🤨😐😑😶😏😒🙄😬🤥😌😔😪🤤😴😷🤒🤕🤢🤮🤧🥵🥶😶‍🌫️😵🤯🤠🥳🥸😎🤓🧐😕😟🙁☹😮😯😲😳🥺😦😧😨😰😥😢😭😱😖😣😞😓😩😫🥱😤😡😠🤬👋🤚🖐✋🖖👌🤌🤏✌🤞🤟🤘🤙👈👉👆🖕👇☝👍👎✊👊🤛🤜👏🙌👐🤲🤝🙏✍💅🤳💪🦾💖💕💓💗💝💘💟❤🧡💛💚💙💜🤎🖤🤍💯✨⭐🌟💫🎀🎁🎂🎉🎊🎈
+  </div>
+</div>
+
+<!-- INPUT AREA -->
+<div class="input-area">
+  <div class="input-left">
+    <button class="input-btn" title="추가" onclick="alert('추가 기능은 준비 중이에요!')">+</button>
+    <button class="input-btn emoji" title="이모티콘" onclick="toggleEmoji()">😊</button>
+  </div>
+  <div class="input-wrapper">
+    <textarea 
+      class="input-field" 
+      id="messageInput" 
+      placeholder="메시지를 입력하세요..."
+      rows="1"
+      onkeydown="handleKeyPress(event)"
+      oninput="autoResize(this)"></textarea>
+  </div>
+  <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// 메시지 전송
+// ═══════════════════════════════════════
+function sendMessage() {
+  const input = document.getElementById('messageInput');
+  const text = input.value.trim();
+  
+  if (!text) return;
+  
+  // 내 메시지 추가
+  addMessage('me', text);
+  
+  input.value = '';
+  input.style.height = 'auto';
+  
+  // 하리 응답 (타이핑 후)
+  showTyping();
+  setTimeout(() => {
+    hideTyping();
+    const reply = getHariReply(text);
+    addMessage('hari', reply);
+  }, 1000 + Math.random() * 1000);
+}
+
+function addMessage(sender, text) {
+  const messages = document.getElementById('messages');
+  const time = new Date();
+  const timeStr = formatTime(time);
+  
+  const messageHTML = sender === 'me' 
+    ? `
+    <div class="message-group me">
+      <div class="msg-content">
+        <div class="msg-bubble-row">
+          <div class="msg-meta">
+            <span class="msg-read">1</span>
+            <span class="msg-time">${timeStr}</span>
+          </div>
+          <div class="msg-bubble">${escapeHtml(text)}</div>
+        </div>
+      </div>
+    </div>
+    `
+    : `
+    <div class="message-group other">
+      <div class="msg-profile">H</div>
+      <div class="msg-content">
+        <div class="msg-bubble-row">
+          <div class="msg-bubble">${escapeHtml(text)}</div>
+          <div class="msg-meta">
+            <span class="msg-time">${timeStr}</span>
+            <span class="msg-read">READ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+  
+  messages.insertAdjacentHTML('beforeend', messageHTML);
+  scrollToBottom();
+}
+
+function showTyping() {
+  const messages = document.getElementById('messages');
+  const typingHTML = `
+    <div class="typing-indicator" id="typingIndicator">
+      <div class="msg-profile">H</div>
+      <div class="typing-bubble">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+      </div>
+    </div>
+  `;
+  messages.insertAdjacentHTML('beforeend', typingHTML);
+  scrollToBottom();
+}
+
+function hideTyping() {
+  const typing = document.getElementById('typingIndicator');
+  if (typing) typing.remove();
+}
+
+// ═══════════════════════════════════════
+// 하리 응답 로직
+// ═══════════════════════════════════════
+const HARI_RESPONSES = {
+  '안녕': ['안녕하세요! 😊', '안녕! 만나서 반가워요 ✨', '안녕하세요~ 오늘 기분 어때요?'],
+  '뭐해': ['지금 여러분이랑 얘기하고 있잖아요! 이게 제일 즐거운 시간이에요 💕', '조금 전까지 새 비주얼 촬영 컨셉 구상하고 있었어요 📸'],
+  '패션': ['요즘은 오버사이즈 실루엣에 완전 빠졌어요! 중성적인 무드가 너무 좋아요 👗', '미니멀한 베이직 아이템 + 포인트 하나만 주는 스타일 어때요? ✨'],
+  '음악': ['저는 요즘 indie pop이랑 lo-fi에 빠져 있어요 🎵', 'R&B도 너무 좋아해요! 감성적인 가사가 마음에 닿는 느낌 💙'],
+  '좋아': ['저도 좋아요! 💕', '완전 공감이에요 ✨'],
+  'default': [
+    '흥미로운 질문이네요! 🤔',
+    '그런 생각 해본 적 있어요! 저는 항상 새로운 시각으로 세상을 보려고 해요 🌙',
+    '와, 재미있는 이야기예요 ✨',
+    '그 이야기 들으니까 마음이 따뜻해지네요 💛',
+    '음... 저도 완벽한 답은 없지만, 같이 생각해보면 좋을 것 같아요 😊'
+  ]
+};
+
+function getHariReply(userText) {
+  const text = userText.toLowerCase();
+  
+  for (const [keyword, responses] of Object.entries(HARI_RESPONSES)) {
+    if (keyword === 'default') continue;
+    if (text.includes(keyword)) {
+      return responses[Math.floor(Math.random() * responses.length)];
+    }
+  }
+  
+  const defaultResponses = HARI_RESPONSES.default;
+  return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+}
+
+// ═══════════════════════════════════════
+// 유틸리티
+// ═══════════════════════════════════════
+function formatTime(date) {
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12 || 12;
+  return `${ampm} ${hours}:${String(minutes).padStart(2, '0')}`;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML.replace(/\n/g, '<br>');
+}
+
+function scrollToBottom() {
+  const container = document.getElementById('chatContainer');
+  setTimeout(() => {
+    container.scrollTop = container.scrollHeight;
+  }, 100);
+}
+
+function handleKeyPress(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    sendMessage();
+  }
+}
+
+function autoResize(textarea) {
+  textarea.style.height = 'auto';
+  textarea.style.height = Math.min(textarea.scrollHeight, 100) + 'px';
+}
+
+function sendQuick(text) {
+  document.getElementById('messageInput').value = text;
+  sendMessage();
+}
+
+function goBack() {
+  window.history.back();
+}
+
+// ═══════════════════════════════════════
+// 이모티콘 피커
+// ═══════════════════════════════════════
+function toggleEmoji() {
+  const picker = document.getElementById('emojiPicker');
+  picker.classList.toggle('show');
+}
+
+// 이모티콘 클릭 시 입력창에 추가
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('emoji-item')) {
+    const input = document.getElementById('messageInput');
+    input.value += e.target.textContent;
+    input.focus();
+  }
+  
+  // 이모티콘 피커 외부 클릭 시 닫기
+  if (!e.target.closest('.emoji-picker') && !e.target.closest('.input-btn.emoji')) {
+    document.getElementById('emojiPicker').classList.remove('show');
+  }
+});
+
+// 페이지 로드 시 스크롤
+window.addEventListener('load', () => {
+  scrollToBottom();
+});
+
+// ═══════════════════════════════════════
+// 검색 기능
+// ═══════════════════════════════════════
+
+// 대화 기록 저장 (실제로는 서버에서 가져와야 함)
+let chatHistory = [
+  { date: '2026-03-20', time: 'PM 3:15', sender: 'hari', text: '안녕하세요! 오늘 날씨 정말 좋네요 🌸' },
+  { date: '2026-03-20', time: 'PM 3:16', sender: 'me', text: '네! 정말 화창해요' },
+  { date: '2026-03-20', time: 'PM 3:17', sender: 'hari', text: '이런 날엔 밖에 나가서 산책하면 좋을 것 같아요' },
+  { date: '2026-03-21', time: 'AM 10:30', sender: 'hari', text: '오늘은 패션에 대해 이야기해볼까요?' },
+  { date: '2026-03-21', time: 'AM 10:31', sender: 'me', text: '좋아요! 요즘 트렌드가 뭔가요?' },
+  { date: '2026-03-21', time: 'AM 10:32', sender: 'hari', text: '요즘은 오버사이즈 실루엣이 인기예요 👗' },
+  { date: '2026-03-22', time: 'PM 2:00', sender: 'hari', text: '음악 추천해드릴까요? 🎵' },
+  { date: '2026-03-22', time: 'PM 2:01', sender: 'me', text: '네! 듣고 싶어요' },
+  { date: '2026-03-22', time: 'PM 2:02', sender: 'hari', text: '저는 요즘 indie pop에 빠져있어요' },
+  { date: '2026-03-23', time: 'PM 5:20', sender: 'hari', text: '저녁 맛있게 드세요! 🍽️' },
+  { date: '2026-03-23', time: 'PM 5:21', sender: 'me', text: '감사합니다!' },
+  { date: '2026-03-24', time: 'AM 9:00', sender: 'hari', text: '좋은 아침이에요! ☀️' },
+  { date: '2026-03-24', time: 'AM 9:01', sender: 'me', text: '좋은 아침입니다!' },
+  { date: '2026-03-24', time: 'PM 4:30', sender: 'hari', text: '오늘 하루 어떠셨어요?' },
+  { date: '2026-03-24', time: 'PM 4:31', sender: 'me', text: '바빴지만 즐거웠어요' },
+  { date: '2026-03-25', time: 'PM 2:30', sender: 'hari', text: '안녕하세요! 저는 하리예요 ✨' },
+  { date: '2026-03-25', time: 'PM 2:30', sender: 'hari', text: '오늘은 무슨 이야기 하고 싶으세요?' },
+  { date: '2026-03-25', time: 'PM 2:31', sender: 'me', text: '안녕하세요! 만나서 반가워요 🙌' }
+];
+
+function openSearch() {
+  document.getElementById('searchModal').classList.add('show');
+  document.getElementById('searchInput').focus();
+}
+
+function closeSearch() {
+  document.getElementById('searchModal').classList.remove('show');
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchResults').innerHTML = `
+    <div class="search-no-results">
+      <div class="search-no-results-icon">💬</div>
+      <div class="search-no-results-text">
+        검색어를 입력하거나<br>날짜를 선택해주세요
+      </div>
+    </div>
+  `;
+}
+
+function closeSearchOnOutside(event) {
+  if (event.target.id === 'searchModal') {
+    closeSearch();
+  }
+}
+
+function switchSearchTab(tab) {
+  // 탭 활성화
+  document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  // 날짜 필터 표시/숨김
+  const dateFilter = document.getElementById('dateFilter');
+  if (tab === 'date') {
+    dateFilter.classList.add('show');
+    // 검색 입력 초기화
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchResults').innerHTML = `
+      <div class="search-no-results">
+        <div class="search-no-results-icon">📅</div>
+        <div class="search-no-results-text">
+          날짜 범위를 선택하고<br>검색 버튼을 눌러주세요
+        </div>
+      </div>
+    `;
+  } else {
+    dateFilter.classList.remove('show');
+    document.getElementById('searchResults').innerHTML = `
+      <div class="search-no-results">
+        <div class="search-no-results-icon">💬</div>
+        <div class="search-no-results-text">
+          검색어를 입력해주세요
+        </div>
+      </div>
+    `;
+  }
+}
+
+function performSearch() {
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  const resultsContainer = document.getElementById('searchResults');
+  
+  if (!query) {
+    resultsContainer.innerHTML = `
+      <div class="search-no-results">
+        <div class="search-no-results-icon">💬</div>
+        <div class="search-no-results-text">
+          검색어를 입력해주세요
+        </div>
+      </div>
+    `;
+    return;
+  }
+  
+  // 키워드로 검색
+  const results = chatHistory.filter(msg => 
+    msg.text.toLowerCase().includes(query)
+  );
+  
+  displaySearchResults(results, query);
+}
+
+function searchByDate() {
+  const dateFrom = document.getElementById('dateFrom').value;
+  const dateTo = document.getElementById('dateTo').value;
+  
+  if (!dateFrom || !dateTo) {
+    alert('시작 날짜와 종료 날짜를 모두 선택해주세요.');
+    return;
+  }
+  
+  const results = chatHistory.filter(msg => {
+    return msg.date >= dateFrom && msg.date <= dateTo;
+  });
+  
+  displaySearchResults(results, null, `${dateFrom} ~ ${dateTo}`);
+}
+
+function displaySearchResults(results, keyword = null, dateRange = null) {
+  const resultsContainer = document.getElementById('searchResults');
+  
+  if (results.length === 0) {
+    resultsContainer.innerHTML = `
+      <div class="search-no-results">
+        <div class="search-no-results-icon">🔍</div>
+        <div class="search-no-results-text">
+          검색 결과가 없습니다<br>다른 키워드나 날짜를 시도해보세요
+        </div>
+      </div>
+    `;
+    return;
+  }
+  
+  let html = '';
+  results.forEach(msg => {
+    let preview = msg.text;
+    
+    // 키워드 하이라이트
+    if (keyword) {
+      const regex = new RegExp(`(${keyword})`, 'gi');
+      preview = preview.replace(regex, '<mark>$1</mark>');
+    }
+    
+    html += `
+      <div class="search-result-item" onclick="jumpToMessage('${msg.date}', '${msg.time}')">
+        <div class="search-result-date">${formatDate(msg.date)} ${msg.time}</div>
+        <div class="search-result-preview">${preview}</div>
+        <div class="search-result-sender">${msg.sender === 'hari' ? '하리' : '나'}</div>
+      </div>
+    `;
+  });
+  
+  resultsContainer.innerHTML = html;
+}
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  const dayOfWeek = days[date.getDay()];
+  
+  return `${year}.${month}.${day} (${dayOfWeek})`;
+}
+
+function jumpToMessage(date, time) {
+  closeSearch();
+  
+  // 실제로는 해당 날짜의 메시지를 로드하고 스크롤해야 함
+  // 여기서는 알림만 표시
+  alert(`${date} ${time} 메시지로 이동합니다.\n\n실제 구현 시에는 해당 날짜의 대화 기록을 불러와서 표시합니다.`);
+  
+  // 예시: 해당 날짜의 메시지들을 화면에 표시
+  loadMessagesForDate(date);
+}
+
+function loadMessagesForDate(date) {
+  const messages = document.getElementById('messages');
+  const messagesForDate = chatHistory.filter(msg => msg.date === date);
+  
+  if (messagesForDate.length === 0) return;
+  
+  // 기존 메시지 지우기
+  messages.innerHTML = '';
+  
+  // 날짜 구분선 추가
+  messages.innerHTML += `
+    <div class="date-divider">
+      <span class="date-divider-text">${formatDate(date).toUpperCase()}</span>
+    </div>
+  `;
+  
+  // 해당 날짜의 메시지들 추가
+  messagesForDate.forEach(msg => {
+    if (msg.sender === 'hari') {
+      messages.innerHTML += `
+        <div class="message-group other">
+          <div class="msg-profile">H</div>
+          <div class="msg-content">
+            <div class="msg-bubble-row">
+              <div class="msg-bubble">${msg.text}</div>
+              <div class="msg-meta">
+                <span class="msg-time">${msg.time}</span>
+                <span class="msg-read">READ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      messages.innerHTML += `
+        <div class="message-group me">
+          <div class="msg-content">
+            <div class="msg-bubble-row">
+              <div class="msg-meta">
+                <span class="msg-read">1</span>
+                <span class="msg-time">${msg.time}</span>
+              </div>
+              <div class="msg-bubble">${msg.text}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  });
+  
+  scrollToBottom();
+}
+
+// ESC 키로 검색 닫기
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeSearch();
+  }
+});
+</script>
+
+</body>
+</html>
