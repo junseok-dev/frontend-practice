@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -729,6 +730,191 @@ section { width:100%; border-bottom:0.5px solid var(--bdr); }
 /* §5 NEWS */
 #s5 { background:var(--s5-bg); }
 .news-grid { display:grid; grid-template-columns:1fr 1fr; }
+
+/* §5 YOUTUBE VIDEOS */
+#s5-yt {
+  background:var(--s5-bg);
+  border-bottom:0.5px solid var(--bdr);
+}
+.yt-api-notice {
+  display:flex; align-items:center; gap:.7rem;
+  padding:.55rem 2.5rem;
+  background:rgba(255,123,138,0.06);
+  border-bottom:0.5px solid var(--bdr);
+  font-family:'DM Mono',monospace; font-size:.54rem;
+  letter-spacing:.1em; color:var(--dim);
+}
+.yt-api-notice strong { color:var(--acc); font-weight:400; }
+.yt-api-notice a {
+  color:var(--acc); text-decoration:none;
+  border-bottom:0.5px solid var(--acc);
+  transition:opacity .2s;
+}
+.yt-api-notice a:hover { opacity:.6; }
+.yt-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--bdr);
+  padding:0;
+}
+.yt-card {
+  background:var(--s5-bg);
+  display:flex; flex-direction:column;
+  cursor:pointer;
+  transition:background .22s;
+  position:relative;
+  overflow:hidden;
+}
+.yt-card:hover { background:#fff5f6; }
+.yt-thumb-wrap {
+  position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  background:#f0e8e5;
+}
+.yt-thumb-wrap img {
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform .4s cubic-bezier(.25,.46,.45,.94);
+  display:block;
+}
+.yt-card:hover .yt-thumb-wrap img { transform:scale(1.04); }
+.yt-thumb-placeholder {
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#fff0f2,#ffe4ec);
+}
+.yt-thumb-placeholder svg { width:28px; height:28px; fill:none; }
+.yt-play-badge {
+  position:absolute; bottom:.6rem; right:.6rem;
+  background:rgba(42,36,32,.82);
+  color:#fff;
+  font-family:'DM Mono',monospace; font-size:.5rem;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:3px 8px;
+  display:flex; align-items:center; gap:4px;
+  opacity:0; transform:translateY(4px);
+  transition:opacity .22s, transform .22s;
+}
+.yt-card:hover .yt-play-badge { opacity:1; transform:translateY(0); }
+.yt-play-badge svg { width:7px; height:7px; fill:#fff; }
+.yt-duration {
+  position:absolute; bottom:.6rem; left:.6rem;
+  background:rgba(42,36,32,.72);
+  color:#fff;
+  font-family:'DM Mono',monospace; font-size:.48rem;
+  letter-spacing:.06em;
+  padding:2px 6px;
+}
+.yt-info {
+  padding:.9rem 1.1rem 1.1rem;
+  flex:1; display:flex; flex-direction:column; gap:.35rem;
+}
+.yt-title {
+  font-size:.8rem; color:var(--ink);
+  line-height:1.45; font-weight:400;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.yt-meta {
+  display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+  font-family:'DM Mono',monospace; font-size:.5rem;
+  letter-spacing:.07em; text-transform:uppercase; color:var(--dim);
+}
+.yt-meta-dot { opacity:.4; }
+.yt-loading {
+  grid-column:1/-1;
+  display:flex; align-items:center; justify-content:center;
+  padding:4rem;
+  gap:.8rem;
+  font-family:'DM Mono',monospace; font-size:.6rem;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--dim);
+}
+.yt-loading-spinner {
+  width:18px; height:18px;
+  border:1.5px solid var(--bdr2);
+  border-top-color:var(--acc);
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.yt-error {
+  grid-column:1/-1;
+  padding:3rem 2.5rem;
+  font-family:'DM Mono',monospace; font-size:.58rem;
+  letter-spacing:.1em; color:var(--dim);
+  border:0.5px dashed var(--bdr2);
+  margin:2rem;
+  display:flex; flex-direction:column; align-items:center; gap:.6rem; text-align:center;
+}
+.yt-error strong { color:var(--acc); font-size:.64rem; font-weight:400; }
+.yt-key-form {
+  display:flex; gap:.5rem; margin-top:.4rem; flex-wrap:wrap; justify-content:center;
+}
+.yt-key-input {
+  background:transparent;
+  border:0.5px solid var(--bdr2);
+  color:var(--ink); font-family:'DM Mono',monospace;
+  font-size:.6rem; letter-spacing:.08em;
+  padding:.5rem .8rem; outline:none;
+  width:340px; max-width:90vw;
+  transition:border-color .2s;
+}
+.yt-key-input:focus { border-color:var(--acc); }
+.yt-key-btn {
+  background:var(--acc); border:none; color:#fff;
+  font-family:'DM Mono',monospace; font-size:.58rem;
+  letter-spacing:.14em; text-transform:uppercase;
+  padding:.5rem 1rem; cursor:pointer;
+  transition:background .2s;
+}
+.yt-key-btn:hover { background:#ff6070; }
+@media(max-width:900px){
+  .yt-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:560px){
+  .yt-grid { grid-template-columns:1fr; }
+}
+
+/* ── YouTube 영상 모달 플레이어 ── */
+#yt-modal-overlay {
+  position:fixed; inset:0; z-index:600;
+  background:rgba(42,36,32,0.85);
+  backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none;
+  transition:opacity .3s;
+}
+#yt-modal-overlay.show { opacity:1; pointer-events:all; }
+#yt-modal-box {
+  width:90vw; max-width:900px;
+  position:relative;
+  transform:translateY(24px) scale(.97);
+  transition:transform .38s cubic-bezier(.77,0,.18,1);
+}
+#yt-modal-overlay.show #yt-modal-box { transform:translateY(0) scale(1); }
+#yt-modal-iframe-wrap {
+  position:relative; width:100%; aspect-ratio:16/9;
+  background:#000;
+}
+#yt-modal-iframe-wrap iframe {
+  position:absolute; inset:0; width:100%; height:100%; border:none;
+}
+#yt-modal-info {
+  padding:.9rem 1rem .7rem;
+  background:var(--s7-bg);
+  display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;
+}
+#yt-modal-title { font-size:.88rem; color:var(--ink-on-dark); line-height:1.5; flex:1; }
+#yt-modal-close {
+  flex-shrink:0;
+  background:transparent; border:0.5px solid rgba(255,245,246,.22);
+  color:var(--ink-on-dark); font-family:'DM Mono',monospace;
+  font-size:.58rem; letter-spacing:.12em; text-transform:uppercase;
+  padding:5px 14px; cursor:pointer; transition:background .2s; white-space:nowrap;
+}
+#yt-modal-close:hover { background:var(--acc); border-color:var(--acc); }
 .news-col { padding:2.5rem; }
 .news-col:first-child { border-right:0.5px solid var(--bdr); }
 .news-col-label { font-family:'DM Mono',monospace; font-size:.57rem; letter-spacing:.2em; text-transform:uppercase; color:var(--acc); margin-bottom:1.5rem; display:flex; align-items:center; gap:.6rem; }
@@ -1451,6 +1637,51 @@ section { width:100%; border-bottom:0.5px solid var(--bdr); }
   </div>
 </section>
 
+<!-- §5-YT YOUTUBE VIDEOS -->
+<section id="s5-yt">
+  <div class="sec-header">
+    <div>
+      <div class="sec-tag">05.5 — YouTube</div>
+      <h2 class="sec-title">VIDEOS</h2>
+    </div>
+    <a class="sec-more" href="https://www.youtube.com/@Hari-o5m2r" target="_blank" rel="noopener">채널 보기 ↗</a>
+  </div>
+  <div class="yt-grid">
+    {% for v in videos %}
+    <div class="yt-card">
+      <div class="yt-thumb-wrap" style="aspect-ratio:9/16;background:#1a1410;">
+        <video
+          src="{% load static %}{% static v.file %}"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          loop
+          playsinline
+          preload="metadata"
+          onmouseenter="this.play()"
+          onmouseleave="this.pause();this.currentTime=0;"
+        ></video>
+        <span class="yt-duration" style="left:auto;right:.6rem;bottom:.6rem;background:#ff0000;">▶ Shorts</span>
+      </div>
+      <div class="yt-info">
+        <div class="yt-title">{{ v.title }}</div>
+        <div class="yt-meta">
+          <span>{{ v.date }}</span>
+        </div>
+        <a href="https://www.youtube.com/@Hari-o5m2r" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.6rem;
+                  font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.12em;
+                  text-transform:uppercase;color:#ff0000;text-decoration:none;
+                  border-bottom:0.5px solid #ff0000;padding-bottom:1px;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+          YouTube에서 보기 ↗
+        </a>
+      </div>
+    </div>
+    {% empty %}
+    <div class="yt-error"><strong>영상 없음</strong><span>등록된 영상이 없습니다.</span></div>
+    {% endfor %}
+  </div>
+</section>
+
 <!-- §5.5 MEMBERSHIP -->
 <section id="s-sub">
 
@@ -1646,6 +1877,21 @@ section { width:100%; border-bottom:0.5px solid var(--bdr); }
   </div>
 </section>
 
+<!-- YouTube 모달 플레이어 -->
+<div id="yt-modal-overlay" onclick="ytModalClose(event)">
+  <div id="yt-modal-box">
+    <div id="yt-modal-iframe-wrap">
+      <iframe id="yt-modal-iframe" src="" allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+    </div>
+    <div id="yt-modal-info">
+      <div id="yt-modal-title"></div>
+      <button id="yt-modal-close" onclick="ytModalClose()">닫기 ✕</button>
+    </div>
+  </div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
 function openAuth(tab){
@@ -1781,8 +2027,204 @@ document.getElementById('chat-page-link').addEventListener('click', function(e){
   if(this.getAttribute('href') === '#'){ e.preventDefault(); alert('하리 대화 페이지를 준비 중이에요.\n곧 오픈 예정입니다! 🙏'); }
 });
 function planSelect(btn,tier){ btn.textContent='처리 중...'; setTimeout(()=>{ btn.textContent=`${tier.toUpperCase()} 가입 완료! ✓`; btn.style.background='#2e8b52'; btn.style.borderColor='#2e8b52'; btn.style.color='#fff'; setTimeout(()=>{ btn.textContent=tier==='free'?'무료로 시작하기 →':tier==='fan+'?'Fan+ 시작하기 →':'VIP 시작하기 →'; btn.style.background=''; btn.style.borderColor=''; btn.style.color=''; },3000); },800); }
+
+/* ── YouTube API 연동 ──────────────────────────────── */
+<script>window.HARI_YT_KEY = "{{ YOUTUBE_API_KEY }}";</script>
+<script>
+(function(){
+  const YT_HANDLE = '@Hari-o5m2r';
+  const YT_MAX    = 8;
+
+  /* ── API 키: Django가 주입. 없으면 빈 문자열 ── */
+  const apiKey = (typeof HARI_YT_KEY !== 'undefined' && HARI_YT_KEY) ? HARI_YT_KEY : '';
+
+  const grid = document.getElementById('yt-grid');
+
+  /* 시간 포맷 — ISO 8601 duration → mm:ss */
+  function fmtDur(iso){
+    if(!iso) return '';
+    const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+    if(!m) return '';
+    const h=parseInt(m[1]||0), min=parseInt(m[2]||0), s=parseInt(m[3]||0);
+    if(h) return `${h}:${String(min).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    return `${min}:${String(s).padStart(2,'0')}`;
+  }
+
+  /* 날짜 상대 표시 */
+  function relDate(iso){
+    const d=new Date(iso), now=new Date();
+    const diff=Math.floor((now-d)/86400000);
+    if(diff===0) return '오늘';
+    if(diff<7)   return diff+'일 전';
+    if(diff<30)  return Math.floor(diff/7)+'주 전';
+    if(diff<365) return Math.floor(diff/30)+'개월 전';
+    return Math.floor(diff/365)+'년 전';
+  }
+
+  /* 조회수 포맷 */
+  function fmtViews(n){
+    n=parseInt(n||0);
+    if(n>=1000000) return (n/1000000).toFixed(1)+'M';
+    if(n>=1000)    return (n/1000).toFixed(1)+'K';
+    return String(n);
+  }
+
+  /* 카드 렌더링 */
+  function renderCards(items){
+    grid.innerHTML='';
+    if(!items.length){
+      grid.innerHTML='<div class="yt-error"><strong>영상 없음</strong>채널에 공개된 영상이 없습니다.</div>';
+      return;
+    }
+    items.forEach(item=>{
+      const vid   = item.id;
+      const snip  = item.snippet||{};
+      const stat  = item.statistics||{};
+      const cd    = item.contentDetails||{};
+      const thumb = (snip.thumbnails?.maxres||snip.thumbnails?.high||snip.thumbnails?.medium||snip.thumbnails?.default||{}).url||'';
+      const title = snip.title||'제목 없음';
+      const views = fmtViews(stat.viewCount);
+      const date  = relDate(snip.publishedAt);
+      const dur   = fmtDur(cd.duration);
+
+      const card  = document.createElement('div');
+      card.className='yt-card';
+      card.innerHTML=`
+        <div class="yt-thumb-wrap">
+          ${thumb
+            ? `<img src="${thumb}" alt="${title.replace(/"/g,'&quot;')}" loading="lazy">`
+            : `<div class="yt-thumb-placeholder"><svg viewBox="0 0 24 24" stroke="var(--acc)" stroke-width="1.2"><polygon points="5,3 19,12 5,21"/></svg></div>`
+          }
+          ${dur?`<span class="yt-duration">${dur}</span>`:''}
+          ${isShorts?`<span class="yt-duration" style="left:auto;right:.6rem;bottom:.6rem;background:#ff0000;letter-spacing:.06em;">▶ Shorts</span>`:''}
+          <div class="yt-play-badge">
+            <svg viewBox="0 0 8 8"><polygon points="1,0 7,4 1,8"/></svg>
+            재생
+          </div>
+        </div>
+        <div class="yt-info">
+          <div class="yt-title">${title}</div>
+          <div class="yt-meta">
+            ${views?`<span>${views} views</span><span class="yt-meta-dot">·</span>`:''}
+            <span>${date}</span>
+          </div>
+        </div>`;
+      /* 쇼츠 판별 — 60초 이하면 쇼츠 */
+      const durSec = (()=>{
+        const m = (cd.duration||'').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+        if(!m) return 999;
+        return (parseInt(m[1]||0)*3600)+(parseInt(m[2]||0)*60)+(parseInt(m[3]||0));
+      })();
+      const isShorts = durSec <= 60;
+
+      card.addEventListener('click',()=>{
+        if(isShorts){
+          window.open(`https://www.youtube.com/shorts/${vid}`, '_blank', 'noopener');
+        } else {
+          ytModalOpen(vid, title, false);
+        }
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  /* 에러 표시 */
+  function showError(msg){
+    grid.innerHTML=`<div class="yt-error"><strong>불러오기 실패</strong><span>${msg}</span></div>`;
+  }
+
+  /* 핵심 로드 함수 */
+  async function loadVideos(key){
+    if(!key){
+      grid.innerHTML=`<div class="yt-error"><strong>API 키 없음</strong><span>서버에 YOUTUBE_API_KEY가 설정되지 않았습니다.</span></div>`;
+      return;
+    }
+
+    grid.innerHTML='<div class="yt-loading"><span class="yt-loading-spinner"></span>영상 불러오는 중...</div>';
+
+    try {
+      // 1) 핸들 → 채널 ID 변환
+      const chRes = await fetch(
+        `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forHandle=${encodeURIComponent(YT_HANDLE)}&key=${key}`
+      );
+      const chData = await chRes.json();
+
+      if(chData.error){
+        const reason = chData.error.errors?.[0]?.reason||'';
+        if(reason==='keyInvalid'||chData.error.code===400)
+          showError('API 키가 유효하지 않습니다. .env 파일을 확인해주세요.');
+        else if(chData.error.code===403)
+          showError('API 할당량 초과 또는 YouTube Data API가 비활성화 상태입니다.');
+        else
+          showError(`API 오류: ${chData.error.message}`);
+        return;
+      }
+
+      const uploads = chData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+      if(!uploads){ showError(`채널 "${YT_HANDLE}"을 찾을 수 없습니다.`); return; }
+
+      // 2) 업로드 플레이리스트 → 최신 영상 ID 목록
+      const plRes = await fetch(
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploads}&maxResults=${YT_MAX}&key=${key}`
+      );
+      const plData = await plRes.json();
+      if(plData.error){ showError(`플레이리스트 오류: ${plData.error.message}`); return; }
+
+      const ids = (plData.items||[]).map(i=>i.snippet?.resourceId?.videoId).filter(Boolean);
+      if(!ids.length){ renderCards([]); return; }
+
+      // 3) 영상 상세정보
+      const vRes = await fetch(
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${ids.join(',')}&key=${key}`
+      );
+      const vData = await vRes.json();
+      if(vData.error){ showError(`영상 상세 오류: ${vData.error.message}`); return; }
+
+      renderCards(vData.items||[]);
+
+    } catch(err){
+      showError('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    }
+  }
+
+  /* 초기 로드 */
+  loadVideos(apiKey);
+})();
 function toggleFaq(el){ const item=el.parentElement; item.classList.toggle('open'); }
 function submitForm(e){ e.preventDefault(); const btn=e.target.querySelector('.cf-btn'); btn.textContent='전송 완료! ✓'; btn.style.background='var(--grn)'; setTimeout(()=>{ btn.textContent='보내기 / Send →'; btn.style.background=''; },3000); }
+
+/* ── YouTube 모달 플레이어 ── */
+function ytModalOpen(vid, title, isShorts){
+  const overlay  = document.getElementById('yt-modal-overlay');
+  const iframe   = document.getElementById('yt-modal-iframe');
+  const titleEl  = document.getElementById('yt-modal-title');
+  const box      = document.getElementById('yt-modal-box');
+  const wrap     = document.getElementById('yt-modal-iframe-wrap');
+
+  /* 쇼츠 → 세로형 비율 + 쇼츠 전용 URL */
+  if(isShorts){
+    box.style.maxWidth  = '380px';
+    wrap.style.aspectRatio = '9/16';
+    iframe.src = `https://www.youtube.com/embed/${vid}?autoplay=1&rel=0&loop=1&playlist=${vid}`;
+  } else {
+    box.style.maxWidth  = '900px';
+    wrap.style.aspectRatio = '16/9';
+    iframe.src = `https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`;
+  }
+
+  titleEl.textContent = title || '';
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function ytModalClose(e){
+  if(e && e.target !== document.getElementById('yt-modal-overlay') && e.target !== document.getElementById('yt-modal-close')) return;
+  const overlay = document.getElementById('yt-modal-overlay');
+  const iframe  = document.getElementById('yt-modal-iframe');
+  overlay.classList.remove('show');
+  document.body.style.overflow = '';
+  setTimeout(()=>{ iframe.src=''; }, 350);
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') ytModalClose({target: document.getElementById('yt-modal-overlay')}); });
 </script>
 </body>
 </html>
