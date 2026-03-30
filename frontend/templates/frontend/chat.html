@@ -1055,161 +1055,17 @@ body {
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="header-left">
-    <button class="back-btn" onclick="goBack()">←</button>
-    <div class="header-profile">
-      <div class="profile-img">H</div>
-      <div class="profile-info">
-        <div class="profile-name">하리</div>
-        <div class="profile-status">
-          <span class="status-dot"></span>
-          <span>Online</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="header-right">
-    <button class="header-btn" onclick="openSearch()">🔍 Search</button>
-    <button class="header-btn" onclick="alert('설정 기능은 준비 중이에요!')">☰ Menu</button>
-  </div>
-</div>
+{% include "frontend/includes/chat/_header.html" %}
 
-<!-- SEARCH MODAL -->
-<div class="search-modal" id="searchModal" onclick="closeSearchOnOutside(event)">
-  <div class="search-container">
-    <!-- 검색 헤더 -->
-    <div class="search-header">
-      <div class="search-input-wrapper">
-        <span class="search-icon">🔍</span>
-        <input 
-          type="text" 
-          class="search-input" 
-          id="searchInput"
-          placeholder="메시지 검색..."
-          oninput="performSearch()"
-        >
-      </div>
-      <button class="search-close" onclick="closeSearch()">×</button>
-    </div>
+{% include "frontend/includes/chat/_search.html" %}
 
-    <!-- 검색 탭 -->
-    <div class="search-tabs">
-      <button class="search-tab active" onclick="switchSearchTab('keyword')">키워드</button>
-      <button class="search-tab" onclick="switchSearchTab('date')">날짜</button>
-    </div>
+{% include "frontend/includes/chat/_quickreply.html" %}
 
-    <!-- 날짜 필터 -->
-    <div class="date-filter" id="dateFilter">
-      <div class="date-filter-row">
-        <span class="date-filter-label">From</span>
-        <input type="date" class="date-input" id="dateFrom">
-        <span class="date-filter-label">To</span>
-        <input type="date" class="date-input" id="dateTo">
-        <button class="date-filter-btn" onclick="searchByDate()">검색</button>
-      </div>
-    </div>
+{% include "frontend/includes/chat/_messages.html" %}
 
-    <!-- 검색 결과 -->
-    <div class="search-results" id="searchResults">
-      <div class="search-no-results">
-        <div class="search-no-results-icon">💬</div>
-        <div class="search-no-results-text">
-          검색어를 입력하거나<br>날짜를 선택해주세요
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% include "frontend/includes/chat/_emoji.html" %}
 
-<!-- QUICK REPLIES -->
-<div class="quick-replies">
-  <button class="quick-reply-btn" onclick="sendQuick('안녕하세요!')">👋 안녕하세요!</button>
-  <button class="quick-reply-btn" onclick="sendQuick('오늘 뭐해?')">💭 오늘 뭐해?</button>
-  <button class="quick-reply-btn" onclick="sendQuick('요즘 어때?')">✨ 요즘 어때?</button>
-  <button class="quick-reply-btn" onclick="sendQuick('패션 추천해줘')">👗 패션 추천</button>
-  <button class="quick-reply-btn" onclick="sendQuick('음악 들려줘')">🎵 음악 추천</button>
-</div>
-
-<!-- CHAT MESSAGES -->
-<div class="chat-container" id="chatContainer">
-  <div class="messages" id="messages">
-    
-    <!-- 날짜 구분선 -->
-    <div class="date-divider">
-      <span class="date-divider-text">2026. 03. 25 TUE</span>
-    </div>
-
-    <!-- 하리 메시지 -->
-    <div class="message-group other">
-      <div class="msg-profile">H</div>
-      <div class="msg-content">
-        <div class="msg-name">Hari</div>
-        <div class="msg-bubble-row">
-          <div class="msg-bubble">안녕하세요! 저는 하리예요 ✨<br>만나서 정말 반가워요!</div>
-          <div class="msg-meta">
-            <span class="msg-time">PM 2:30</span>
-            <span class="msg-read">READ</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 하리 메시지 2 -->
-    <div class="message-group other">
-      <div class="msg-profile">H</div>
-      <div class="msg-content">
-        <div class="msg-bubble-row">
-          <div class="msg-bubble">오늘은 무슨 이야기 하고 싶으세요? 패션, 음악, 일상... 뭐든 좋아요! 😊</div>
-          <div class="msg-meta">
-            <span class="msg-time">PM 2:30</span>
-            <span class="msg-read">READ</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 내 메시지 -->
-    <div class="message-group me">
-      <div class="msg-content">
-        <div class="msg-bubble-row">
-          <div class="msg-meta">
-            <span class="msg-read">1</span>
-            <span class="msg-time">PM 2:31</span>
-          </div>
-          <div class="msg-bubble">안녕하세요! 만나서 반가워요 🙌</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- EMOJI PICKER -->
-<div class="emoji-picker" id="emojiPicker">
-  <div class="emoji-grid">
-    😀😃😄😁😆😅🤣😂🙂🙃😉😊😇🥰😍🤩😘😗☺😚😙🥲😋😛😜🤪😝🤑🤗🤭🤫🤔🤐🤨😐😑😶😏😒🙄😬🤥😌😔😪🤤😴😷🤒🤕🤢🤮🤧🥵🥶😶‍🌫️😵🤯🤠🥳🥸😎🤓🧐😕😟🙁☹😮😯😲😳🥺😦😧😨😰😥😢😭😱😖😣😞😓😩😫🥱😤😡😠🤬👋🤚🖐✋🖖👌🤌🤏✌🤞🤟🤘🤙👈👉👆🖕👇☝👍👎✊👊🤛🤜👏🙌👐🤲🤝🙏✍💅🤳💪🦾💖💕💓💗💝💘💟❤🧡💛💚💙💜🤎🖤🤍💯✨⭐🌟💫🎀🎁🎂🎉🎊🎈
-  </div>
-</div>
-
-<!-- INPUT AREA -->
-<div class="input-area">
-  <div class="input-left">
-    <button class="input-btn" title="추가" onclick="alert('추가 기능은 준비 중이에요!')">+</button>
-    <button class="input-btn emoji" title="이모티콘" onclick="toggleEmoji()">😊</button>
-  </div>
-  <div class="input-wrapper">
-    <textarea 
-      class="input-field" 
-      id="messageInput" 
-      placeholder="메시지를 입력하세요..."
-      rows="1"
-      onkeydown="handleKeyPress(event)"
-      oninput="autoResize(this)"></textarea>
-  </div>
-  <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
-</div>
+{% include "frontend/includes/chat/_input.html" %}
 
 <script>
 // ═══════════════════════════════════════

@@ -1,0 +1,47 @@
+<!-- SEARCH MODAL -->
+<div class="search-modal" id="searchModal" onclick="closeSearchOnOutside(event)">
+  <div class="search-container">
+    <!-- 검색 헤더 -->
+    <div class="search-header">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          class="search-input" 
+          id="searchInput"
+          placeholder="메시지 검색..."
+          oninput="performSearch()"
+        >
+      </div>
+      <button class="search-close" onclick="closeSearch()">×</button>
+    </div>
+
+    <!-- 검색 탭 -->
+    <div class="search-tabs">
+      <button class="search-tab active" onclick="switchSearchTab('keyword')">키워드</button>
+      <button class="search-tab" onclick="switchSearchTab('date')">날짜</button>
+    </div>
+
+    <!-- 날짜 필터 -->
+    <div class="date-filter" id="dateFilter">
+      <div class="date-filter-row">
+        <span class="date-filter-label">From</span>
+        <input type="date" class="date-input" id="dateFrom">
+        <span class="date-filter-label">To</span>
+        <input type="date" class="date-input" id="dateTo">
+        <button class="date-filter-btn" onclick="searchByDate()">검색</button>
+      </div>
+    </div>
+
+    <!-- 검색 결과 -->
+    <div class="search-results" id="searchResults">
+      <div class="search-no-results">
+        <div class="search-no-results-icon">💬</div>
+        <div class="search-no-results-text">
+          검색어를 입력하거나<br>날짜를 선택해주세요
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

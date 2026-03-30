@@ -1,0 +1,73 @@
+<section id="s5">
+  <div class="sec-header">
+    <div><div class="sec-tag">05 — News &amp; Schedule</div><h2 class="sec-title">NEWS</h2></div>
+  </div>
+  <div class="news-grid">
+    <div class="news-col">
+      <div class="news-col-label">업로드 예정</div>
+      <ul class="sched-list">
+        <li class="sched-item"><div class="sched-date">MAR<br>28</div><div class="sched-txt">유튜브 쇼츠 — 봄 룩북<small>YouTube Shorts</small></div><span class="badge up">예정</span></li>
+        <li class="sched-item"><div class="sched-date">APR<br>01</div><div class="sched-txt">인스타그램 라이브 — 보리 Q&amp;A<small>Instagram Live · 21:00 KST</small></div><span class="badge tbd">D-7</span></li>
+        <li class="sched-item"><div class="sched-date">APR<br>10</div><div class="sched-txt">새 싱글 「BLOOM」 티저 공개<small>All Platforms</small></div><span class="badge up">예정</span></li>
+        <li class="sched-item"><div class="sched-date">APR<br>15</div><div class="sched-txt">틱톡 챌린지 캠페인 시작<small>TikTok · #HariBloom</small></div><span class="badge tbd">예정</span></li>
+        <li class="sched-item"><div class="sched-date">MAY<br>01</div><div class="sched-txt">콜라보 컬렉션 공식 발표<small>Brand Announcement</small></div><span class="badge tbd">예정</span></li>
+      </ul>
+    </div>
+    <div class="news-col">
+      <div class="news-col-label">최근 소식</div>
+      <ul class="past-list">
+        <li class="past-item"><div class="past-date">MAR.20</div><div class="past-txt">서울 패션위크 공식 앰배서더 선정 — 가상 인간 최초</div><div class="past-cat">Fashion</div></li>
+        <li class="past-item"><div class="past-date">FEB.14</div><div class="past-txt">첫 디지털 싱글 「SIGNAL」 발매, 글로벌 차트 진입</div><div class="past-cat">Music</div></li>
+        <li class="past-item"><div class="past-date">JAN.30</div><div class="past-txt">하리 대화 서비스 공개 — 보리 팬클럽과 실시간 소통 오픈</div><div class="past-cat">New</div></li>
+        <li class="past-item"><div class="past-date">JAN.10</div><div class="past-txt">Forbes Korea 「주목할 크리에이터 10인」 선정</div><div class="past-cat">Media</div></li>
+        <li class="past-item"><div class="past-date">DEC.25</div><div class="past-txt">글로벌 뷰티 브랜드 콜라보 컬렉션, 12시간 만에 완판</div><div class="past-cat">Collab</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- §5-YT YOUTUBE VIDEOS -->
+<section id="s5-yt">
+  <div class="sec-header">
+    <div>
+      <div class="sec-tag">05.5 — YouTube</div>
+      <h2 class="sec-title">VIDEOS</h2>
+    </div>
+    <a class="sec-more" href="https://www.youtube.com/@Hari-o5m2r" target="_blank" rel="noopener">채널 보기 ↗</a>
+  </div>
+  <div class="yt-grid">
+    {% for v in videos %}
+    <div class="yt-card">
+      <div class="yt-thumb-wrap" style="aspect-ratio:9/16;background:#1a1410;">
+        <video
+          src="{% load static %}{% static v.file %}"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          loop
+          playsinline
+          preload="metadata"
+          onmouseenter="this.play()"
+          onmouseleave="this.pause();this.currentTime=0;"
+        ></video>
+        <span class="yt-duration" style="left:auto;right:.6rem;bottom:.6rem;background:#ff0000;">▶ Shorts</span>
+      </div>
+      <div class="yt-info">
+        <div class="yt-title">{{ v.title }}</div>
+        <div class="yt-meta">
+          <span>{{ v.date }}</span>
+        </div>
+        <a href="https://www.youtube.com/@Hari-o5m2r" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.6rem;
+                  font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.12em;
+                  text-transform:uppercase;color:#ff0000;text-decoration:none;
+                  border-bottom:0.5px solid #ff0000;padding-bottom:1px;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+          YouTube에서 보기 ↗
+        </a>
+      </div>
+    </div>
+    {% empty %}
+    <div class="yt-error"><strong>영상 없음</strong><span>등록된 영상이 없습니다.</span></div>
+    {% endfor %}
+  </div>
+</section>
+

@@ -1,0 +1,120 @@
+    <!-- ── 내 정보 ── -->
+    <div class="pg" id="pg-myinfo">
+      <div class="pg-title">내 정보 & 설정</div>
+      <p class="pg-sub">계정 정보와 알림 설정을 관리하세요.</p>
+
+      <!-- 구독 현황 카드 (전체 너비) -->
+      <div class="card" style="margin-bottom:1rem;">
+        <div class="c-title">이용 중인 구독 서비스</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr);margin-bottom:1rem;">
+          <!-- Basic -->
+          <div style="background:var(--bg);padding:1.4rem;opacity:.45;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;">
+              <span style="font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);">Tier 01</span>
+              <span style="font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border:0.5px solid var(--bdr2);color:var(--dim);">미이용</span>
+            </div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;color:var(--dim);margin-bottom:.3rem;">Basic</div>
+            <div style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:var(--dim);">₩9,900/월 · 하루 100회 대화</div>
+          </div>
+          <!-- Fan+ (현재 이용 중) -->
+          <div style="background:var(--bg);padding:1.4rem;border:1.5px solid var(--acc);position:relative;">
+            <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;background:var(--acc);color:#fff;padding:3px 14px;white-space:nowrap;">이용 중</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;margin-top:.6rem;">
+              <span style="font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);">Tier 02</span>
+              <span style="font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border:0.5px solid rgba(122,106,82,.4);color:var(--acc);background:rgba(122,106,82,.07);">활성</span>
+            </div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;color:var(--ink);margin-bottom:.3rem;">Fan+</div>
+            <div style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:var(--dim);margin-bottom:.7rem;">₩19,900 / 월</div>
+            <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.08em;color:var(--dim);display:flex;flex-direction:column;gap:.3rem;">
+              <span>✓ 독점 비하인드 콘텐츠</span>
+              <span>✓ 하리의 비공개 편지 (월 1회)</span>
+              <span>✓ 굿즈 사전 구매 (5% 할인)</span>
+            </div>
+          </div>
+          <!-- VIP (업그레이드 유도) -->
+          <div style="background:var(--bg2);padding:1.4rem;border:0.5px solid var(--bdr);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;">
+              <span style="font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);">Tier 03</span>
+              <span style="font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border:0.5px solid rgba(201,151,26,.4);color:var(--acc);">업그레이드</span>
+            </div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;color:var(--dim);margin-bottom:.3rem;">VIP</div>
+            <div style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:var(--dim);margin-bottom:.7rem;">₩29,900 / 월</div>
+            <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.08em;color:var(--dim);display:flex;flex-direction:column;gap:.3rem;margin-bottom:.9rem;">
+              <span>+ 팬 전용 라이브 초대</span>
+              <span>+ 1:1 채팅 우선권</span>
+              <span>+ 굿즈 15% 할인</span>
+            </div>
+            <a href="/#s-sub" style="display:block;text-align:center;background:var(--gold);color:var(--ink);font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.55rem;transition:background .2s;">VIP 업그레이드 →</a>
+          </div>
+        </div>
+        <!-- 구독 상세 정보 -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);">
+          <div style="background:var(--bg);padding:.9rem 1rem;">
+            <span style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:.25rem;">결제일</span>
+            <span style="font-size:.85rem;color:var(--ink);">매월 1일</span>
+          </div>
+          <div style="background:var(--bg);padding:.9rem 1rem;">
+            <span style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:.25rem;">다음 결제</span>
+            <span style="font-size:.85rem;color:var(--ink);">2025.05.01</span>
+          </div>
+          <div style="background:var(--bg);padding:.9rem 1rem;">
+            <span style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:.25rem;">결제 수단</span>
+            <span style="font-size:.85rem;color:var(--ink);">Google Pay</span>
+          </div>
+          <div style="background:var(--bg);padding:.9rem 1rem;">
+            <span style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:.25rem;">구독 상태</span>
+            <span style="font-size:.85rem;color:var(--grn);">● 활성</span>
+          </div>
+        </div>
+        <div style="margin-top:.9rem;display:flex;gap:.5rem;">
+          <button class="save-btn" style="background:transparent;border:0.5px solid var(--bdr2);color:var(--dim);font-size:.6rem;" onclick="toast('구독 관리 페이지로 이동합니다')">구독 관리</button>
+          <button class="save-btn" style="background:transparent;border:0.5px solid rgba(200,74,58,.35);color:#c84a3a;font-size:.6rem;" onclick="toast('구독을 취소하려면 고객센터에 문의해주세요')">구독 취소</button>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div>
+          <div class="card">
+            <div class="c-title">계정 정보</div>
+            <div class="info-grid">
+              <div class="info-item"><span class="info-lbl">이름</span><span class="info-val">홍길동</span></div>
+              <div class="info-item"><span class="info-lbl">닉네임</span><span class="info-val">보리팬01</span></div>
+              <div class="info-item"><span class="info-lbl">이메일</span><span class="info-val">hong****@gmail.com</span></div>
+              <div class="info-item"><span class="info-lbl">로그인</span><span class="info-val">Google</span></div>
+              <div class="info-item"><span class="info-lbl">가입일</span><span class="info-val">2025.03.01</span></div>
+              <div class="info-item"><span class="info-lbl">멤버십</span><span class="info-val" style="color:var(--acc)">Fan+</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="c-title">정보 수정</div>
+            <div class="field"><label>닉네임</label><input type="text" value="보리팬01"></div>
+            <div class="field"><label>자기소개</label><textarea>보리 멤버 ✨ 서울 거주</textarea></div>
+            <button class="save-btn" onclick="toast('정보가 저장되었어요 ✓')">저장하기 →</button>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="c-title">알림 설정</div>
+            <div class="notif-toggle"><div class="nt-ico"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div><div class="nt-text"><div class="nt-name">새 콘텐츠 알림</div><div class="nt-desc">업로드 시 즉시 알림</div></div><label class="nt-toggle"><input type="checkbox" checked></label></div>
+            <div class="notif-toggle"><div class="nt-ico"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="nt-text"><div class="nt-name">포인트 적립 알림</div><div class="nt-desc">포인트 변동 시 알림</div></div><label class="nt-toggle"><input type="checkbox" checked></label></div>
+            <div class="notif-toggle"><div class="nt-ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div><div class="nt-text"><div class="nt-name">포인트샵 한정 상품</div><div class="nt-desc">한정 상품 등록 시 알림</div></div><label class="nt-toggle"><input type="checkbox" checked></label></div>
+            <div class="notif-toggle"><div class="nt-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="nt-text"><div class="nt-name">하리 뉴스레터</div><div class="nt-desc">새 소식 이메일</div></div><label class="nt-toggle"><input type="checkbox"></label></div>
+            <button class="save-btn" style="width:100%;margin-top:1rem" onclick="toast('알림 설정이 저장되었어요 ✓')">저장하기 →</button>
+          </div>
+          <div class="card">
+            <div class="c-title">계정 관리</div>
+            <div class="danger-zone">
+              <div class="dz-title">위험 구역</div>
+              <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+                <button class="dz-btn" onclick="toast('로그아웃 되었어요')">로그아웃</button>
+                <button class="dz-btn" onclick="toast('계정 탈퇴는 고객센터에 문의해주세요')">회원 탈퇴</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
